@@ -1,0 +1,315 @@
+export default function ThetaEdgeProDashboard() {
+  const stats = [
+    { title: "Total Signals", value: "120", sub: "Today", accent: "cyan" },
+    { title: "Active Trades", value: "8", sub: "Positions", accent: "green" },
+    { title: "Profit & Loss", value: "+$3,450", sub: "+12.5%", accent: "emerald" },
+    { title: "Accuracy Rate", value: "87.5%", sub: "", accent: "blue" },
+    { title: "Account Status", value: "Premium Active", sub: "", accent: "gold" },
+  ];
+
+  const signals = [
+    { asset: "BTC/USD", signal: "Buy", entry: "45,200", stop: "44,500", target: "47,500", confidence: "85%", status: "Active" },
+    { asset: "AAPL", signal: "Sell", entry: "145.50", stop: "148.00", target: "140.00", confidence: "90%", status: "Target Hit" },
+    { asset: "ETH/USD", signal: "Buy", entry: "3,250", stop: "3,100", target: "3,400", confidence: "80%", status: "Stopped" },
+    { asset: "TSLA", signal: "Sell", entry: "720.80", stop: "740.00", target: "700.00", confidence: "88%", status: "Pending" },
+  ];
+
+  const orderBook = [
+    ["BUY", "OKX", "1.219", "322.200"],
+    ["BUY", "KUCOIN", "21.968", "721.300"],
+    ["BUY", "BTSE", "1.219", "421.110"],
+    ["SELL", "KRAKEN", "1.219", "247.400"],
+    ["SELL", "KUCOIN", "21.968", "156.890"],
+    ["SELL", "GATE", "21.968", "891.310"],
+  ];
+
+  const activities = [
+    "TSLA Sell Signal Hit Target",
+    "ETH/USD Stop Loss Hit",
+    "BTC/USD Buy Signal Active",
+  ];
+
+  return (
+    <div className="min-h-screen bg-[#030913] text-white flex overflow-hidden">
+      <aside className="hidden lg:flex w-[250px] shrink-0 flex-col border-r border-cyan-400/10 bg-[radial-gradient(circle_at_top_left,rgba(56,189,248,0.08),transparent_30%),linear-gradient(180deg,#050d18,#07111f)] p-4">
+        <div className="flex items-center gap-3 px-2 py-2 mb-4 border-b border-white/10">
+          <div className="h-11 w-11 rounded-xl bg-cyan-400/10 border border-cyan-300/20 flex items-center justify-center text-cyan-300 font-bold">T</div>
+          <div>
+            <div className="text-[30px] leading-none font-semibold tracking-tight text-cyan-300">ThetaEdge AI</div>
+          </div>
+        </div>
+
+        <nav className="space-y-2 text-[15px] mt-2">
+          {[
+            "Dashboard",
+            "Signals",
+            "Performance",
+            "Active Trades",
+            "Reports",
+            "Support",
+            "Settings",
+          ].map((item, i) => (
+            <div
+              key={item}
+              className={`group flex items-center gap-3 rounded-2xl px-4 py-3 border transition ${
+                i === 0
+                  ? "bg-cyan-400/10 border-cyan-300/20 text-white shadow-[0_0_30px_rgba(56,189,248,0.12)]"
+                  : "bg-white/[0.02] border-white/5 text-slate-300 hover:bg-cyan-400/5 hover:border-cyan-300/10"
+              }`}
+            >
+              <div className="h-5 w-5 rounded-md bg-white/10 group-hover:bg-cyan-300/20" />
+              <span>{item}</span>
+            </div>
+          ))}
+        </nav>
+
+        <div className="mt-auto pt-6">
+          <div className="mx-auto h-44 w-44 rounded-full bg-[conic-gradient(#5eead4_0_73%,#153046_73%_100%)] p-3 shadow-[0_0_40px_rgba(45,212,191,0.12)]">
+            <div className="h-full w-full rounded-full bg-[#08111c] border border-white/10 flex flex-col items-center justify-center">
+              <div className="text-5xl font-semibold">73%</div>
+              <div className="mt-1 text-cyan-300 text-lg tracking-[0.25em]">TM</div>
+            </div>
+          </div>
+        </div>
+      </aside>
+
+      <main className="flex-1 min-w-0 bg-[radial-gradient(circle_at_top_right,rgba(56,189,248,0.12),transparent_20%),linear-gradient(180deg,#06101b,#040a14)]">
+        <header className="h-20 border-b border-cyan-400/10 px-6 lg:px-8 flex items-center justify-between bg-[linear-gradient(180deg,rgba(255,255,255,0.03),rgba(255,255,255,0.01))] backdrop-blur-xl">
+          <div className="flex items-center gap-6">
+            <div className="text-3xl font-semibold tracking-tight text-cyan-300 lg:hidden">ThetaEdge AI</div>
+            <div className="text-2xl font-semibold">Client Dashboard</div>
+          </div>
+          <div className="flex items-center gap-4">
+            <div className="h-10 w-10 rounded-full border border-white/10 bg-white/5" />
+            <div className="h-10 w-10 rounded-full border border-white/10 bg-white/5 relative">
+              <div className="absolute -top-1 -right-1 h-5 w-5 rounded-full bg-rose-500 text-[10px] font-bold flex items-center justify-center">4</div>
+            </div>
+            <div className="hidden sm:block text-lg text-slate-200">Welcome back, Rahul Sharma</div>
+            <div className="h-12 w-12 rounded-full border border-white/10 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.5),rgba(255,255,255,0.1))]" />
+          </div>
+        </header>
+
+        <div className="p-5 lg:p-6 space-y-5">
+          <section className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-5 gap-4">
+            {stats.map((card) => {
+              const accentMap = {
+                cyan: "from-cyan-400/15 to-cyan-400/5 border-cyan-300/20",
+                green: "from-emerald-400/15 to-emerald-400/5 border-emerald-300/20",
+                emerald: "from-green-400/15 to-green-400/5 border-green-300/20",
+                blue: "from-sky-400/15 to-sky-400/5 border-sky-300/20",
+                gold: "from-amber-300/15 to-amber-300/5 border-amber-300/20",
+              };
+              return (
+                <div key={card.title} className={`rounded-[22px] border bg-gradient-to-br ${accentMap[card.accent]} bg-[#0c1523] shadow-[0_0_35px_rgba(15,23,42,0.4)] px-5 py-5`}>
+                  <div className="flex items-start justify-between gap-3">
+                    <div className="h-12 w-12 rounded-2xl bg-white/5 border border-white/10" />
+                    <div className="text-right text-xs text-slate-400">{card.sub}</div>
+                  </div>
+                  <div className="mt-4 text-lg text-slate-200">{card.title}</div>
+                  <div className={`mt-1 text-[34px] leading-none font-semibold ${card.accent === 'gold' ? 'text-amber-200 text-[28px]' : card.accent === 'emerald' ? 'text-emerald-300' : 'text-white'}`}>{card.value}</div>
+                </div>
+              );
+            })}
+          </section>
+
+          <section className="grid grid-cols-1 xl:grid-cols-[1.7fr_0.55fr] gap-5">
+            <div className="rounded-[26px] border border-cyan-400/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.04),rgba(255,255,255,0.02))] shadow-[0_0_50px_rgba(56,189,248,0.08)] p-5">
+              <div className="flex items-center justify-between mb-3">
+                <div>
+                  <div className="text-2xl font-semibold">Performance Overview</div>
+                  <div className="text-slate-400 mt-1">P&amp;L This Week</div>
+                </div>
+                <div className="flex gap-2">
+                  <div className="h-2.5 w-2.5 rounded-full bg-white/30" />
+                  <div className="h-2.5 w-2.5 rounded-full bg-cyan-300/70" />
+                  <div className="h-2.5 w-2.5 rounded-full bg-white/30" />
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 lg:grid-cols-[1.2fr_0.8fr] gap-4 items-stretch">
+                <div className="rounded-[22px] border border-white/10 bg-[#08111d] p-4 relative overflow-hidden min-h-[290px]">
+                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(52,211,153,0.10),transparent_40%)]" />
+                  <svg viewBox="0 0 600 260" className="relative z-10 w-full h-[240px]">
+                    {[...Array(6)].map((_, i) => (
+                      <line key={i} x1="0" y1={30 + i * 38} x2="600" y2={30 + i * 38} stroke="rgba(255,255,255,0.06)" />
+                    ))}
+                    {[...Array(8)].map((_, i) => (
+                      <line key={`v-${i}`} x1={50 + i * 70} y1="10" x2={50 + i * 70} y2="240" stroke="rgba(255,255,255,0.04)" />
+                    ))}
+                    <polyline
+                      fill="url(#fill)"
+                      stroke="none"
+                      points="20,180 60,165 95,150 130,170 170,142 210,132 250,145 290,125 330,95 370,104 410,83 455,76 500,60 540,62 540,240 20,240"
+                    />
+                    <polyline
+                      fill="none"
+                      stroke="#61f0d2"
+                      strokeWidth="4"
+                      points="20,180 60,165 95,150 130,170 170,142 210,132 250,145 290,125 330,95 370,104 410,83 455,76 500,60 540,62"
+                    />
+                    <defs>
+                      <linearGradient id="fill" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0%" stopColor="rgba(97,240,210,0.30)" />
+                        <stop offset="100%" stopColor="rgba(97,240,210,0.02)" />
+                      </linearGradient>
+                    </defs>
+                  </svg>
+                  <div className="absolute bottom-4 left-4 text-slate-300 text-sm">Winning Trades: <span className="text-emerald-300">14</span> | Losing Trades: <span className="text-slate-400">3</span></div>
+                  <div className="absolute right-8 top-16 rounded-xl bg-emerald-400/20 text-emerald-200 px-4 py-2 text-2xl font-semibold">+8.2%</div>
+                  <div className="absolute right-6 bottom-20 rounded-xl bg-rose-400/20 text-rose-200 px-4 py-2 text-xl font-semibold">BUY Week</div>
+                </div>
+
+                <div className="rounded-[22px] border border-amber-300/20 bg-[linear-gradient(180deg,rgba(255,255,255,0.03),rgba(255,255,255,0.02))] p-5 relative overflow-hidden">
+                  <div className="text-[42px] font-semibold tracking-tight">Subscription</div>
+                  <div className="mt-5 space-y-4 text-lg">
+                    <div className="flex justify-between text-slate-300"><span className="text-slate-400">Current Plan:</span> <span className="font-semibold">Pro Plan</span></div>
+                    <div className="flex justify-between text-slate-300"><span className="text-slate-400">Expires:</span> <span className="font-semibold">15 July 2024</span></div>
+                  </div>
+                  <button className="mt-8 w-full rounded-2xl bg-[linear-gradient(90deg,#50d8ff,#4fa3ff)] text-[#06111b] font-semibold py-4 text-xl shadow-[0_0_25px_rgba(79,163,255,0.35)]">Upgrade Plan</button>
+                  <div className="absolute right-5 bottom-5 flex items-end gap-2 opacity-30">
+                    {[30, 44, 56, 72, 88].map((h) => (
+                      <div key={h} className="w-4 rounded-t-md bg-white/30" style={{ height: `${h}px` }} />
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="space-y-5">
+              <div className="rounded-[26px] border border-cyan-400/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.04),rgba(255,255,255,0.02))] p-5 shadow-[0_0_50px_rgba(56,189,248,0.08)]">
+                <div className="text-[38px] font-semibold mb-3">Order Book</div>
+                <div className="space-y-2">
+                  {orderBook.map(([side, ex, size, px], idx) => (
+                    <div key={idx} className={`grid grid-cols-[auto_1fr_auto_auto] gap-3 items-center rounded-xl px-3 py-3 ${side === 'BUY' ? 'bg-emerald-400/8' : 'bg-rose-400/8'}`}>
+                      <div className={`h-7 w-7 rounded-full ${side === 'BUY' ? 'bg-emerald-400/20' : 'bg-sky-400/20'}`} />
+                      <div className="font-medium">{ex}</div>
+                      <div className="text-slate-300">{size}</div>
+                      <div className="text-slate-400">{px}</div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="rounded-[26px] border border-cyan-400/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.04),rgba(255,255,255,0.02))] p-5 shadow-[0_0_50px_rgba(56,189,248,0.08)]">
+                <div className="h-24 rounded-2xl border border-white/10 bg-[#08111d] relative overflow-hidden">
+                  <div className="absolute inset-0 opacity-70">
+                    <svg viewBox="0 0 400 80" className="w-full h-full">
+                      {[...Array(26)].map((_, i) => {
+                        const x = 8 + i * 15;
+                        const y = 20 + (i % 7) * 4;
+                        const h = 18 + ((i * 13) % 30);
+                        return <rect key={i} x={x} y={80 - h - y/3} width="7" height={h} rx="2" fill={i % 3 === 0 ? '#f87171' : '#60a5fa'} opacity="0.75" />;
+                      })}
+                    </svg>
+                  </div>
+                </div>
+              </div>
+
+              <div className="rounded-[26px] border border-cyan-400/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.04),rgba(255,255,255,0.02))] p-5 shadow-[0_0_50px_rgba(56,189,248,0.08)]">
+                <div className="text-[32px] font-semibold mb-4">Recent Activity</div>
+                <div className="space-y-3">
+                  {activities.map((item) => (
+                    <div key={item} className="rounded-2xl bg-white/[0.03] border border-white/5 px-4 py-4 flex items-center justify-between gap-3">
+                      <div className="flex items-center gap-3">
+                        <div className="h-9 w-9 rounded-full bg-cyan-400/20" />
+                        <div className="text-slate-200">{item}</div>
+                      </div>
+                      <div className="text-xs text-slate-400">15 mins ago</div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section className="rounded-[26px] border border-cyan-400/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.04),rgba(255,255,255,0.02))] shadow-[0_0_50px_rgba(56,189,248,0.08)] p-5">
+            <div className="flex items-center justify-between mb-4">
+              <div className="text-[34px] font-semibold">Latest Signals</div>
+              <div className="flex gap-2">
+                <div className="h-8 w-8 rounded-lg bg-white/10" />
+                <div className="h-8 w-8 rounded-lg bg-white/10" />
+                <div className="h-8 w-8 rounded-lg bg-white/10" />
+              </div>
+            </div>
+            <div className="overflow-x-auto">
+              <table className="w-full min-w-[900px]">
+                <thead>
+                  <tr className="text-slate-400 text-left border-b border-white/10">
+                    <th className="pb-4">Asset</th>
+                    <th className="pb-4">Signal</th>
+                    <th className="pb-4">Entry Price</th>
+                    <th className="pb-4">Stop Loss</th>
+                    <th className="pb-4">Target</th>
+                    <th className="pb-4">Confidence</th>
+                    <th className="pb-4">Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {signals.map((row) => (
+                    <tr key={row.asset} className="border-b border-white/5 text-lg">
+                      <td className="py-4 font-medium">{row.asset}</td>
+                      <td className="py-4">
+                        <span className={`px-4 py-2 rounded-xl text-base font-semibold ${row.signal === 'Buy' ? 'bg-emerald-400/15 text-emerald-200' : 'bg-rose-400/15 text-rose-200'}`}>{row.signal}</span>
+                      </td>
+                      <td className="py-4">{row.entry}</td>
+                      <td className="py-4">{row.stop}</td>
+                      <td className="py-4">{row.target}</td>
+                      <td className="py-4 text-cyan-200 font-semibold">{row.confidence}</td>
+                      <td className="py-4">
+                        <span className={`px-4 py-2 rounded-xl text-base font-semibold ${
+                          row.status === 'Active' ? 'bg-sky-400/15 text-sky-200' :
+                          row.status === 'Target Hit' ? 'bg-emerald-400/15 text-emerald-200' :
+                          row.status === 'Stopped' ? 'bg-rose-400/15 text-rose-200' :
+                          'bg-amber-400/15 text-amber-200'
+                        }`}>{row.status}</span>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+
+            <div className="mt-5 h-20 rounded-2xl border border-white/10 bg-[#08111d] overflow-hidden relative">
+              <div className="absolute inset-0">
+                <svg viewBox="0 0 1200 80" className="w-full h-full">
+                  {[...Array(70)].map((_, i) => {
+                    const x = 10 + i * 17;
+                    const h = 12 + ((i * 29) % 36);
+                    const y = 40 - h / 2 + ((i % 5) - 2) * 2;
+                    const up = i % 4 !== 0;
+                    return <rect key={i} x={x} y={y} width="6" height={h} rx="2" fill={up ? '#5eead4' : '#f97316'} opacity="0.8" />;
+                  })}
+                </svg>
+              </div>
+            </div>
+          </section>
+
+          <section className="rounded-[22px] border border-cyan-400/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.04),rgba(255,255,255,0.02))] px-5 py-4 overflow-hidden">
+            <div className="ticker-track flex min-w-max gap-12 text-[30px] whitespace-nowrap">
+              {[
+                ['BTC/USD', '45,200.50', '+2.15%', 'up'],
+                ['ETH/USD', '3,250.75', '-1.05%', 'down'],
+                ['AAPL', '145.50', '+1.75%', 'up'],
+                ['TSLA', '720.80', '-1.20%', 'down'],
+                ['BTC/USD', '45,200.50', '+2.15%', 'up'],
+                ['ETH/USD', '3,250.75', '-1.05%', 'down'],
+                ['AAPL', '145.50', '+1.75%', 'up'],
+                ['TSLA', '720.80', '-1.20%', 'down'],
+              ].map(([sym, px, chg, dir], i) => (
+                <div key={i} className="flex items-center gap-3">
+                  <span className="text-slate-300">{sym}</span>
+                  <span className="font-semibold">{px}</span>
+                  <span className={dir === 'up' ? 'text-emerald-300' : 'text-rose-300'}>{chg}</span>
+                </div>
+              ))}
+            </div>
+            <style jsx>{`
+              .ticker-track { animation: scroll 22s linear infinite; }
+              @keyframes scroll { from { transform: translateX(0); } to { transform: translateX(-35%); } }
+            `}</style>
+          </section>
+        </div>
+      </main>
+    </div>
+  );
+}
